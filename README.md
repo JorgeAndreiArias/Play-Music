@@ -1,4 +1,4 @@
-# platzi-music
+# Play-Music
 
 ## Project setup
 ```

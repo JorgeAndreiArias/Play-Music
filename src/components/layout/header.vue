@@ -5,7 +5,7 @@
         <div class="container">
           <div class="nav-left">
             <div class="nav-item">
-              <strong>Platzi Music</strong>
+              <strong>Play Music</strong>
             </div>
           </div>
           <div class="nav-right nav-menu"></div>
@@ -14,7 +14,7 @@
     </div>
     <div class="hero-body">
       <div class="container has-text-centered">
-        <h1 class="title">Platzi Music</h1>
+        <h1 class="title">Play Music</h1>
         <h2 class="subtitle">Canciones que Vue-nisimas!!!!!</h2>
       </div>
     </div>
