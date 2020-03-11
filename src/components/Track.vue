@@ -9,24 +9,24 @@
       <div class="media">
         <div class="media-left">
           <figure class="image is-48x48">
-              <img :src="track.album.images[0].url" alt />
+            <img :src="track.album.images[0].url" alt />
           </figure>
         </div>
         <div class="media-content">
           <p class="tittle is-6">
-            <strong> {{ track.name }}</strong>
+            <strong>{{ track.name }}</strong>
           </p>
-          <p class="subtitle is-6"> {{ track.artists[0].name }}</p>
+          <p class="subtitle is-6">{{ track.artists[0].name }}</p>
         </div>
         <div class="content">
-            <small> {{ duration }}</small>
-            <nav class="level">
-                <div class="level-left">
-                    <a href="" class="level-item">
-                        <spam class="icon is-small"></spam>
-                    </a>
-                </div>
-            </nav>
+          <small>{{ duration }}</small>
+          <nav class="level">
+            <div class="level-left">
+              <a class="level-item">
+                <span class="icon is-small" @click="selecTrack()">Play</span>
+              </a>
+            </div>
+          </nav>
         </div>
       </div>
     </div>
@@ -35,18 +35,23 @@
 
 <script>
 export default {
-    props:{
-        track: { type: Object, required: true }
-    },
-    computed: {
-        duration(){
-            var ms = this.track.duration_ms;
-            console.log(ms);
-            var min = Math.floor(ms / 60000);
-            var sec = ((ms % 60000) / 1000).toFixed(0);
-            return `${min}:${sec}`;
-        }
+  props: {
+    track: { type: Object, required: true }
+  },
+  computed: {
+    duration() {
+      var ms = this.track.duration_ms;
+      console.log(ms);
+      var min = Math.floor(ms / 60000);
+      var sec = ((ms % 60000) / 1000).toFixed(0);
+      return `${min}:${sec}`;
     }
+  },
+  methods: {
+    selecTrack() {
+      this.$emit("select", this.track.id);
+    }
+  }
 };
 </script>
 
