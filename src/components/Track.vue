@@ -18,12 +18,12 @@
           </p>
           <p class="subtitle is-6">{{ track.artists[0].name }}</p>
         </div>
-        <div class="content">
+        <div>
           <small>{{ duration }}</small>
           <nav class="level">
             <div class="level-left">
               <a class="level-item">
-                <span class="icon is-small" @click="selecTrack()">Play</span>
+                <span class="icon is-largue" @click="selecTrack()">&#9658;</span>
               </a>
             </div>
           </nav>
@@ -41,7 +41,6 @@ export default {
   computed: {
     duration() {
       var ms = this.track.duration_ms;
-      console.log(ms);
       var min = Math.floor(ms / 60000);
       var sec = ((ms % 60000) / 1000).toFixed(0);
       return `${min}:${sec}`;
@@ -50,10 +49,11 @@ export default {
   methods: {
     selecTrack() {
       this.$emit("select", this.track.id);
+      this.$bus.$emit('set-track', this.track);
     }
   }
 };
 </script>
 
-<style>
+<style scoped>
 </style>
