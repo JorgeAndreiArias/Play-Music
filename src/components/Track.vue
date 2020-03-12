@@ -1,8 +1,9 @@
 <template>
-  <div class="card">
+  <div class="card" @click="selecTrack()">
     <div class="card-image">
-      <figure class="image is-1by1">
+      <figure class="image is-1by1 ">
         <img :src="track.album.images[0].url" alt />
+        <img class="play" />
       </figure>
     </div>
     <div class="card-content">
@@ -10,6 +11,7 @@
         <div class="media-left">
           <figure class="image is-48x48">
             <img :src="track.album.images[0].url" alt />
+            
           </figure>
         </div>
         <div class="media-content">
@@ -18,15 +20,15 @@
           </p>
           <p class="subtitle is-6">{{ track.artists[0].name }}</p>
         </div>
-        <div>
+        <div class="container">
           <small>{{ duration }}</small>
-          <nav class="level">
+          <!-- <nav class="level">
             <div class="level-left">
               <a class="level-item">
-                <span class="icon is-largue" @click="selecTrack()">&#9658;</span>
+                <span class="icon is-largue" ><img  src="https://img.icons8.com/flat_round/2x/play.png"></span>
               </a>
             </div>
-          </nav>
+          </nav>-->
         </div>
       </div>
     </div>
@@ -49,11 +51,25 @@ export default {
   methods: {
     selecTrack() {
       this.$emit("select", this.track.id);
-      this.$bus.$emit('set-track', this.track);
+      this.$bus.$emit("set-track", this.track);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 };
 </script>
 
 <style scoped>
+.play {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(245, 252, 247, 0.24),
+      rgba(19, 117, 76, 0.73)
+    ),
+    url("https://img.icons8.com/carbon-copy/2x/play-button-circled.png");
+
+    background-size: cover;
+}
 </style>

@@ -4,7 +4,6 @@ const trackService = {}
 
 trackService.search = function (q) {
     const type = 'track'
-    console.warn(platziMusicService.defaults.baseURL)
     return platziMusicService.get('/search', {
         params: { q, type }
     })
