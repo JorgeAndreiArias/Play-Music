@@ -1,7 +1,7 @@
 <template>
-  <div class="card" @click="selecTrack()">
+  <div class="card" @click="selecTrack()" v-blur="track.preview_url">
     <div class="card-image">
-      <figure class="image is-1by1 ">
+      <figure class="image is-1by1">
         <img :src="track.album.images[0].url" alt />
         <img class="play" />
       </figure>
@@ -11,7 +11,6 @@
         <div class="media-left">
           <figure class="image is-48x48">
             <img :src="track.album.images[0].url" alt />
-            
           </figure>
         </div>
         <div class="media-content">
@@ -21,7 +20,7 @@
           <p class="subtitle is-6">{{ track.artists[0].name }}</p>
         </div>
         <div class="container">
-          <small>{{ duration }}</small>
+          <small>{{ track.duration_ms | ms-to-mm }}</small>
           <!-- <nav class="level">
             <div class="level-left">
               <a class="level-item">
@@ -40,19 +39,19 @@ export default {
   props: {
     track: { type: Object, required: true }
   },
-  computed: {
-    duration() {
-      var ms = this.track.duration_ms;
-      var min = Math.floor(ms / 60000);
-      var sec = ((ms % 60000) / 1000).toFixed(0);
-      return `${min}:${sec}`;
-    }
-  },
   methods: {
     selecTrack() {
-      this.$emit("select", this.track.id);
-      this.$bus.$emit("set-track", this.track);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (this.track.preview_url) {
+        this.$emit("select", this.track.id);
+        this.$bus.$emit("set-track", this.track);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    },
+    goToTrack(id) {
+      this.$router.push({
+        name: "track",
+        params: { id }
+      });
     }
   }
 };
@@ -70,6 +69,6 @@ export default {
     ),
     url("https://img.icons8.com/carbon-copy/2x/play-button-circled.png");
 
-    background-size: cover;
+  background-size: cover;
 }
 </style>

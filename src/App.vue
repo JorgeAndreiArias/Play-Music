@@ -1,16 +1,21 @@
 <template>
   <div id="app">
-    <index />
+    <pm-header />
+    <router-view></router-view>
+    <PmFooter />
   </div>
 </template>
 
 <script>
-import index from "./components/index.vue";
+import PmFooter from "./components/layout/footer.vue";
+import PmHeader from "./components/layout/header.vue";
 
 export default {
   name: "App",
   components: {
-    index
+    
+    PmFooter,
+    PmHeader,
   },
   data() {
     return {};
@@ -18,13 +23,6 @@ export default {
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+
 </style>

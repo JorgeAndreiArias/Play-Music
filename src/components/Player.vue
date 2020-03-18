@@ -1,16 +1,16 @@
 <template>
-  <div class="content">
+  <div class="content" v-if="track && track.album" >
     <div class="crad"> 
       <p>
-        <img :src="track.album.images[0].url" />
+        <img  :src="track.album.images[0].url" />
       </p>
       <p>
         <strong>{{ track.name }}</strong>
         <br />
-        <small>{{ duration }}</small>
+        <small>{{ track.duration_ms | ms-to-mm }}</small>
       </p>
       <p>
-        <audio :src="track.preview_url" controls></audio>
+        <audio :src="track.preview_url" autoplay controls></audio>
       </p>
     </div>
   </div>
@@ -28,14 +28,6 @@ export default {
       this.track = track;
     });
   },
-  computed: {
-    duration() {
-      var ms = this.track.duration_ms;
-      var min = Math.floor(ms / 60000);
-      var sec = ((ms % 60000) / 1000).toFixed(0);
-      return `${min}:${sec}`;
-    }
-  }
 };
 </script>
 

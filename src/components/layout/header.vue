@@ -5,10 +5,13 @@
         <div class="container">
           <div class="nav-left">
             <div class="nav-item">
-              <strong>Play Music</strong>
+              <strong> 	&#x1F3A7;</strong>
             </div>
           </div>
-          <div class="nav-right nav-menu"></div>
+          <div class="nav-right nav-menu">
+            <router-link to="/">Buscar</router-link>
+            <router-link to="about">Nosotros</router-link>
+          </div>
         </div>
       </header>
     </div>

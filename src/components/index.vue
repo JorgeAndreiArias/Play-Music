@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <pm-header />
+  <main>
     <pm-notification :isSuccess="showNotification" v-show="showNotification != ''">
       <p slot="body" v-if="showNotification === 'success'"> Disfruta la musica!!!!</p>
     </pm-notification>
@@ -13,6 +12,7 @@
             class="input is-large"
             placeholder="Buscar canciones"
             v-model="searchQuery"
+            @keyup.enter="search"
           />
           <a href class="button is-info is-large" @click.prevent="search">Buscar</a>
           <a href class="button is-danger is-large">&times;</a>
@@ -31,22 +31,18 @@
         </div>
       </div>
     </section>
-    <PmFooter />
-  </div>
+  </main>
 </template>
 
 <script>
 import trackService from "../services/track.js";
-import PmFooter from "./layout/footer.vue";
-import PmHeader from "./layout/header.vue";
+
 import PmTrack from "./Track.vue";
 import PmLoader from "./shared/Loader.vue";
 import PmNotification from "./shared/Notification.vue";
 
 export default {
   components: {
-    PmFooter,
-    PmHeader,
     PmTrack,
     PmLoader,
     PmNotification
